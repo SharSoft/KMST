@@ -14,10 +14,22 @@ using namespace std;
 
 struct Edge 
 {
-	char vertex1;
-	char vertex2;
+	int vertex1;
+	int vertex2;
 	int weight;
 };
+
+//prints current array of edges
+void printGraph(Edge* e, int m, int n)
+{
+	cout << "# of Nodes: " << n << "\n";
+	cout << "# of Edges: " << m << "\n";
+	
+	for(int i = 0; i < m; i++)
+	{
+		cout << e[i].vertex1 << " " << e[i].vertex2 << " " << e[i].weight << "\n";
+	}
+}
 
 int main()
 {  
@@ -25,13 +37,11 @@ int main()
 	string tmpn;
 	getline(cin,tmpn,' ');
 	int n = atoi(tmpn.c_str());
-	cout << "# of Nodes: " << n << "\n";
 	
 	//read to m
 	string tmpm;
 	getline(cin,tmpm);
 	int m = atoi(tmpm.c_str());
-	cout << "# of Edges: " << m << "\n";
 	
 	Edge e[m];
 	
@@ -59,10 +69,7 @@ int main()
 		e[i].weight = w;
 	}
 	
-	for(int i = 0; i < m; i++)
-	{
-		cout << e[i].vertex1 << " " << e[i].vertex2 << " " << e[i].weight << "\n";
-	}
+	printGraph(e, m, n);
 
 	return 1;
 }
