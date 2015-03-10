@@ -10,6 +10,7 @@
 #include <math.h>
 #include <float.h>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 struct Edge 
@@ -31,9 +32,14 @@ void printGraph(Edge* e, int m, int n)
 	}
 }
 
-void sort(Edge* e)
+bool edgecompare(Edge lhs, Edge rhs)
+{ 
+	return lhs.weight < rhs.weight;
+}
+
+void sort(Edge* e, int m)
 {
-	
+	sort(e, e + m, edgecompare);
 }
 
 int main()
@@ -67,7 +73,9 @@ int main()
 	
 	printGraph(e, m, n);
 	
-	sort(e);
+	sort(e, m);
+	
+	printGraph(e, m, n);
 
 	return 1;
 }
