@@ -14,8 +14,8 @@ using namespace std;
 
 struct Edge 
 {
-	int vertex1;
-	int vertex2;
+	string vertex1;
+	string vertex2;
 	int weight;
 };
 
@@ -29,6 +29,11 @@ void printGraph(Edge* e, int m, int n)
 	{
 		cout << e[i].vertex1 << " " << e[i].vertex2 << " " << e[i].weight << "\n";
 	}
+}
+
+void sort(Edge* e)
+{
+	
 }
 
 int main()
@@ -48,28 +53,21 @@ int main()
 	//store m edges in array e
 	for(int i = 0; i < m; i++)
 	{
-		int v1 = -1;
-		int v2 = -1;
 		int w = 0;
-		string tmpv1;
-		string tmpv2;
 		string tmpw;
 		
-		getline(cin,tmpv1,' ');
-		v1 = atoi(tmpv1.c_str());
+		getline(cin,e[i].vertex1,' ');
 		
-		getline(cin,tmpv2,' ');
-		v2 = atoi(tmpv2.c_str());
+		getline(cin,e[i].vertex2,' ');
 		
 		getline(cin,tmpw);
 		w = atoi(tmpw.c_str());
-		
-		e[i].vertex1 = v1;
-		e[i].vertex2 = v2;
 		e[i].weight = w;
 	}
 	
 	printGraph(e, m, n);
+	
+	sort(e);
 
 	return 1;
 }
