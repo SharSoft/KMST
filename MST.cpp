@@ -15,8 +15,8 @@ using namespace std;
 
 struct Edge 
 {
-	int vertex1;
-	int vertex2;
+	string vertex1;
+	string vertex2;
 	int weight;
 };
 
@@ -166,20 +166,11 @@ int main()
 	for(int i = 0; i < g.m; i++)
 	{
 		int w = 0;
-		int v1 = 0;
-		int v2 = 0;
-		string tmpv1;
-		string tmpv2;
 		string tmpw;
 	
-		//getline(cin, g.edges[i].vertex1,' ');
-		getline(cin,tmpv1);
-		v1 = atoi(tmpv1.c_str());
-		g.edges[i].vertex1 = v1;
+		getline(cin, g.edges[i].vertex1,' ');
 	
-		//getline(cin, g.edges[i].vertex2,' ');
-		v2 = atoi(tmpv2.c_str());
-		g.edges[i].vertex2 = v2;
+		getline(cin, g.edges[i].vertex2,' ');
 	
 		getline(cin,tmpw);
 		w = atoi(tmpw.c_str());
