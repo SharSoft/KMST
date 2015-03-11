@@ -20,12 +20,25 @@ struct Edge
 	int weight;
 };
 
+struct Graph 
+{
+	int* vertices;
+	Edge* edges;
+};
+
 //prints current array of edges
-void printGraph(Edge* e, int m, int n)
+void printGraph(Edge* e, int m, int n, int* v)
 {
 	cout << "# of Nodes: " << n << "\n";
 	cout << "# of Edges: " << m << "\n";
-	
+
+	cout << "vertices: ";
+	for(int i = 0; i < n; i++)
+	{
+		cout << v[i] << " ";
+	}
+	cout << "\n";	
+
 	for(int i = 0; i < m; i++)
 	{
 		cout << e[i].vertex1 << " " << e[i].vertex2 << " " << e[i].weight << "\n";
@@ -52,9 +65,19 @@ int main()
 	//read to m
 	string tmpm;
 	getline(cin,tmpm);
-	int m = atoi(tmpm.c_str());
-	
-	Edge e[m];
+	int m = atoi(tmpm.c_str());	
+
+	Graph g;
+
+	g.vertices = new int[n];
+
+	for(int i = 0; i < n; i++)
+	{
+		int j = i + 1;
+		g.vertices[i] = j;
+	}
+
+	g.edges = new Edge[m];	
 	
 	//store m edges in array e
 	for(int i = 0; i < m; i++)
@@ -62,20 +85,18 @@ int main()
 		int w = 0;
 		string tmpw;
 		
-		getline(cin,e[i].vertex1,' ');
+		getline(cin, g.edges[i].vertex1,' ');
 		
-		getline(cin,e[i].vertex2,' ');
+		getline(cin, g.edges[i].vertex2,' ');
 		
 		getline(cin,tmpw);
 		w = atoi(tmpw.c_str());
-		e[i].weight = w;
+		g.edges[i].weight = w;
 	}
 	
-	printGraph(e, m, n);
+	sort(g.edges, m);
 	
-	sort(e, m);
-	
-	printGraph(e, m, n);
+	printGraph(g.edges, m, n, g.vertices);
 
 	return 1;
 }
