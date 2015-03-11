@@ -24,6 +24,8 @@ struct Graph
 {
 	int* vertices;
 	Edge* edges;
+	int n;
+	int m;
 };
 
 //prints current array of edges
@@ -57,30 +59,30 @@ void sort(Edge* e, int m)
 
 int main()
 {  
+	Graph g;
+	
 	//read to n
 	string tmpn;
 	getline(cin,tmpn,' ');
-	int n = atoi(tmpn.c_str());
+	g.n = atoi(tmpn.c_str());
 	
 	//read to m
 	string tmpm;
 	getline(cin,tmpm);
-	int m = atoi(tmpm.c_str());	
+	g.m = atoi(tmpm.c_str());	
 
-	Graph g;
+	g.vertices = new int[g.n];
 
-	g.vertices = new int[n];
-
-	for(int i = 0; i < n; i++)
+	for(int i = 0; i < g.n; i++)
 	{
 		int j = i + 1;
 		g.vertices[i] = j;
 	}
 
-	g.edges = new Edge[m];	
+	g.edges = new Edge[g.m];	
 	
 	//store m edges in array e
-	for(int i = 0; i < m; i++)
+	for(int i = 0; i < g.m; i++)
 	{
 		int w = 0;
 		string tmpw;
@@ -94,9 +96,9 @@ int main()
 		g.edges[i].weight = w;
 	}
 	
-	sort(g.edges, m);
+	sort(g.edges, g.m);
 	
-	printGraph(g.edges, m, n, g.vertices);
+	printGraph(g.edges, g.m, g.n, g.vertices);
 
 	return 1;
 }
