@@ -13,7 +13,7 @@
 #include <algorithm>
 using namespace std;
 
-struct Edge 
+struct Edge
 {
 	string vertex1;
 	string vertex2;
@@ -72,41 +72,49 @@ void Kruskal(Graph g)
 		rank[i] = 0;
 	}
 
-	//................tester
+	/*................tester
 	for ( int i = 0; i <= g.n; i++) {
             cout << "Set: " << parent[i] << " Height: " << rank[i] << "\n";
-        }
+        }*/
 
 	for (int i = 0; i < g.m; i++)
 	{
-		Edge tmp = g.edges[i];	
-		/*int root1 = find(tmp.vertex1);
-		int root2 = find(tmp.vertex2);
+		Edge tmpe = g.edges[i];
+		int tmpv1 = atoi(tmpe.vertex1.c_str());
+		int tmpv2 = atoi(tmpe.vertex2.c_str());	
+		int root1 = find(tmpv1);
+		int root2 = find(tmpv2);
 		if (root1 != root2) 
 		{
-			MSTweight = MSTweight + e.weight;
-			MST.push_back(e);
+			MSTweight = MSTweight + tmpe.weight;
+			MST.push_back(tmpe);
 			if (rank[root1] > rank[root2]) 
 			{
-				Kset.parent[root2] = root1;
-				Kset.rank[root1]++;
-				cout << "Edge (" << e.vertex1 << "," << e.vertex2 << ") successfully inserted" << "\n";
+				parent[root2] = root1;
+				rank[root1]++;
+				cout << "Edge (" << tmpe.vertex1 << "," << tmpe.vertex2 << ") successfully inserted" << "\n";
 			} 
 			else 
 			{
-				Kset.parent[root1] = root2;
-				Kset.rank[root2]++;
-				cout << "Edge (" << e.vertex1 << "," << e.vertex2 << ") successfully inserted" << "\n";
+				parent[root1] = root2;
+				rank[root2]++;
+				cout << "Edge (" << tmpe.vertex1 << "," << tmpe.vertex2 << ") successfully inserted" << "\n";
 			}
 		}
 		else
-			cout << "Edge (" << g.e.vertex1 << "," << g.e.vertex2 << ") creates cycle" << "\n";
-	*/}
+			cout << "Edge (" << tmpe.vertex1 << "," << tmpe.vertex2 << ") creates cycle" << "\n";
+	}
 
-	/*for (Edge e : MST) 
-	{
-		cout << e.vertex1 << " " << e.vertex2 << endl;
-	}*/
+	if(MST.size() == g.n - 1)
+	{		
+		for (int i = 0; i < MST.size(); i++) 
+		{
+			cout << MST[i].vertex1 << " " << MST[i].vertex2 << endl;
+		}
+		cout << MSTweight << "\n";
+	}
+	else
+		cout << "ERROR: MST not found" << "\n";
 }
 
 //prints current array of edges
@@ -179,7 +187,7 @@ int main()
 
 	sort(g.edges, g.m);
 
-	printGraph(g.edges, g.m, g.n, g.vertices);
+	//printGraph(g.edges, g.m, g.n, g.vertices);
 
 	Kruskal(g);
 
